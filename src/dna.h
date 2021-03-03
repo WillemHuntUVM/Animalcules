@@ -9,7 +9,7 @@ typedef unsigned int DNA_Base;
 
 DNA_Base 	get_partner(DNA_Base);
 char* 		to_string(DNA_Base);
-char		to_char(DNA_Base);
+char*		to_char(DNA_Base);
 
 typedef struct Strand {
 	int length;
