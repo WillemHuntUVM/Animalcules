@@ -11,7 +11,7 @@ DNA_Base 	get_partner(DNA_Base);
 char* 		to_string(DNA_Base);
 char*		to_char(DNA_Base);
 
-typedef struct Strand {
+typedef struct DNA {
 	int length;
 	int *bases;
 } DNA_Strand;
