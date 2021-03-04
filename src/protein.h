@@ -25,7 +25,7 @@
 typedef unsigned int Amino_Acid;
 char 	amino_to_char(Amino_Acid);
 char* 	amino_to_sym(Amino_Acid);
-char* 	amino_to_string(Amino_Acid);
+//char* 	amino_to_string(Amino_Acid); You can't make me
 
 typedef struct Protein {
 	int length;
