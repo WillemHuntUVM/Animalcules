@@ -23,21 +23,18 @@
 #define AMINO_VALINE		19
 
 typedef unsigned int Amino_Acid;
-char* to_char(Amino_Acid);
-char* to_sym(Amino_Acid);
-char* to_string(Amino_Acid);
+char 	amino_to_char(Amino_Acid);
+char* 	amino_to_sym(Amino_Acid);
+char* 	amino_to_string(Amino_Acid);
 
 typedef struct Protein {
 	int length;
 	Amino_Acid* acids;	
 } Protein_Strand;
 
-Amino_Acid 	get_base(Protein_Strand, int);
-Amino_Acid 	get_bases(Protein_Strand, int, int);
-int 		set_base(*Protein_Strand, int, Amino_Acid);
+Amino_Acid 	protein_get_base(Protein_Strand, int);
+Amino_Acid 	protein_get_bases(Protein_Strand, int, int);
+int 		protein_set_base(Protein_Strand*, int, Amino_Acid);
 
-char* to_char(Protein_Strand);
-char* to_string(Protein_Strand);
-char* to_sym(Protein_Strand);
-
+char* protein_to_string(Protein_Strand);
 #endif
