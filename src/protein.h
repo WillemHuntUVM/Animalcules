@@ -35,6 +35,10 @@ typedef struct Protein {
 Amino_Acid 	protein_get_base(Protein_Strand, int);
 Amino_Acid 	protein_get_bases(Protein_Strand, int, int);
 int 		protein_set_base(Protein_Strand*, int, Amino_Acid);
+int		protein_append_base(Protein_Strand*, Amino_Acid);
+int 		protein_insert_base(Protein_Strand*, Amino_Acid);
+int 		protein_append_sequence(Protein_Strand*, Amino_Acid*, int);
+int 		protein_insert_sequence(Protein_Strand*, Amino_Acid*, int);
 
-char* protein_to_string(Protein_Strand);
+char* 		protein_to_string(Protein_Strand);
 #endif
