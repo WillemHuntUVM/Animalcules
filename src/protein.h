@@ -33,7 +33,7 @@ typedef struct Protein {
 } Protein_Strand;
 
 Amino_Acid 	protein_get_base(Protein_Strand, int);
-Amino_Acid 	protein_get_bases(Protein_Strand, int, int);
+Amino_Acid* 	protein_get_bases(Protein_Strand, int, int);
 int 		protein_set_base(Protein_Strand*, int, Amino_Acid);
 int		protein_append_base(Protein_Strand*, Amino_Acid);
 int 		protein_insert_base(Protein_Strand*, Amino_Acid);
