@@ -130,7 +130,7 @@ char* amino_to_sym(Amino_Acid a){
 			return "val";
 			break;
 	}
-	return '_';
+	return "_";
 }
 
 Amino_Acid	protein_get_base(Protein_Strand s, int i){
