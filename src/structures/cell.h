@@ -19,7 +19,7 @@ typedef struct cell_struct {
 	int state;				// Alive: 0, Dead: 1
 } Cell;
 
-Cell 	make_cell(DNA_Strand*);
+Cell* 	make_cell(DNA_Strand*);
 
 int 	cell_add_organelle(Organelle*, char*);
 int 	cell_delete_organelle(Organelle*);
