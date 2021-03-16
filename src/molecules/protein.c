@@ -1,144 +1,140 @@
 #include <stdlib.h>
 #include "protein.h"
 
-char amino_to_char(Amino_Acid a){	
+char amino_to_char(Amino a){	
 	switch (a) {
-		case AMINO_ALANINE:
+		case ALANINE:
 			return 'A';
 			break;
-		case AMINO_CYSTEINE:
+		case CYSTEINE:
 			return 'C';
 			break;
-		case AMINO_ASPARTIC_ACID:
+		case ASPARTIC_ACID:
 			return 'D';
 			break;
-		case AMINO_GLUTAMIC_ACID:
+		case GLUTAMIC_ACID:
 			return 'E';
 			break;
-		case AMINO_PHENYLALANINE:
+		case PHENYLALANINE:
 			return 'F';
 			break;
-		case AMINO_GLYCINE:
+		case GLYCINE:
 			return 'G';
 			break;
-		case AMINO_HISTIDINE:
+		case HISTIDINE:
 			return 'H';
 			break;
-		case AMINO_ISOLEUCINE:
+		case ISOLEUCINE:
 			return 'I';
 			break;
-		case AMINO_LYSINE:
+		case LYSINE:
 			return 'K';
 			break;
-		case AMINO_LEUCINE:
+		case LEUCINE:
 			return 'L';
 			break;
-		case AMINO_METHIONINE:
+		case METHIONINE:
 			return 'M';
 			break;
-		case AMINO_ASPARAGINE:
+		case ASPARAGINE:
 			return 'N';
 			break;
-		case AMINO_PROLINE:
+		case PROLINE:
 			return 'P';
 			break;
-		case AMINO_GLUTAMINE:
+		case GLUTAMINE:
 			return 'Q';
 			break;
-		case AMINO_ARGININE:
+		case ARGININE:
 			return 'R';
 			break;
-		case AMINO_SERINE:
+		case SERINE:
 			return 'S';
 			break;
-		case AMINO_THREONINE:
+		case THREONINE:
 			return 'T';
 			break;
-		case AMINO_TRYPTOPHAN:
+		case TRYPTOPHAN:
 			return 'W';
 			break;
-		case AMINO_TYROSINE:
+		case TYROSINE:
 			return 'Y';
 			break;
-		case AMINO_VALINE:
+		case VALINE:
 			return 'V';
-			break;
 	}
-	return '_';
 }
 
-char* amino_to_sym(Amino_Acid a){
+char* amino_to_sym(Amino a){
 	switch (a) {
-		case AMINO_ALANINE:
+		case ALANINE:
 			return "ala";
 			break;
-		case AMINO_CYSTEINE:
+		case CYSTEINE:
 			return "cys";
 			break;
-		case AMINO_ASPARTIC_ACID:
+		case ASPARTIC_ACID:
 			return "asp";
 			break;
-		case AMINO_GLUTAMIC_ACID:
+		case GLUTAMIC_ACID:
 			return "glu";
 			break;
-		case AMINO_PHENYLALANINE:
+		case PHENYLALANINE:
 			return "phe";
 			break;
-		case AMINO_GLYCINE:
+		case GLYCINE:
 			return "gly";
 			break;
-		case AMINO_HISTIDINE:
+		case HISTIDINE:
 			return "his";
 			break;
-		case AMINO_ISOLEUCINE:
+		case ISOLEUCINE:
 			return "ile";
 			break;
-		case AMINO_LYSINE:
+		case LYSINE:
 			return "lys";
 			break;
-		case AMINO_LEUCINE:
+		case LEUCINE:
 			return "leu";
 			break;
-		case AMINO_METHIONINE:
+		case METHIONINE:
 			return "met";
 			break;
-		case AMINO_ASPARAGINE:
+		case ASPARAGINE:
 			return "asn";
 			break;
-		case AMINO_PROLINE:
+		case PROLINE:
 			return "pro";
 			break;
-		case AMINO_GLUTAMINE:
+		case GLUTAMINE:
 			return "gln";
 			break;
-		case AMINO_ARGININE:
+		case ARGININE:
 			return "arg";
 			break;
-		case AMINO_SERINE:
+		case SERINE:
 			return "ser";
 			break;
-		case AMINO_THREONINE:
+		case THREONINE:
 			return "thr";
 			break;
-		case AMINO_TRYPTOPHAN:
+		case TRYPTOPHAN:
 			return "trp";
 			break;
-		case AMINO_TYROSINE:
+		case TYROSINE:
 			return "tyr";
 			break;
-		case AMINO_VALINE:
+		case VALINE:
 			return "val";
-			break;
 	}
-	return "_";
 }
 
-Amino_Acid	protein_get_base(Protein_Strand s, int i){
+Amino	protein_get_base(Protein s, int i){
 	return s.acids[i];
 }
 
-Amino_Acid*	protein_get_bases(Protein_Strand s, int il, int ir){
-	Amino_Acid* list = (Amino_Acid*) malloc(sizeof(int)*(il-ir));
+Amino*	protein_get_bases(Protein s, int il, int ir){
+	Amino* list = (Amino*) malloc(sizeof(int)*(il-ir));
 	int len = il - ir;
 	int a;
 	for(a=0;a<len;a++){
@@ -147,12 +143,12 @@ Amino_Acid*	protein_get_bases(Protein_Strand s, int il, int ir){
 	return list;
 }
 
-int protein_set_base(Protein_Strand* s, int i, Amino_Acid a){
+int protein_set_base(Protein* s, int i, Amino a){
 	s->acids[i] = a;
 	return 0;	
 }
 
-char* protein_to_string(Protein_Strand s){
+char* protein_to_string(Protein s){
 	char* str = "";
 	int i;
 	for(i=0;i<s.length;i++){
