@@ -1,74 +1,64 @@
-
 #include "dna.h"
 #include <stdlib.h>
 
 DNA_Base dna_base_get_partner(DNA_Base b){
 	switch(b) {
-		case DNA_ADENINE: 
-			return DNA_THYMINE;
+		case ADENINE: 
+			return THYMINE;
 			break;
-		case DNA_THYMINE: 
-			return DNA_ADENINE;
+		case THYMINE: 
+			return ADENINE;
 			break;
-		case DNA_GUANINE: 
-			return DNA_CYTOSINE;
+		case GUANINE: 
+			return CYTOSINE;
 			break;
-		case DNA_CYTOSINE: 
-			return DNA_GUANINE;
-			break;
-		default:
-			return -1;
+		case CYTOSINE: 
+			return GUANINE;
 	}
 }
 
 char* dna_base_to_string(DNA_Base b){
 	switch (b) {
-		case DNA_ADENINE:
+		case ADENINE:
 			return "Adenine";
 			break;
-		case DNA_THYMINE:
+		case THYMINE:
 			return "Thymine";
 			break;
-		case DNA_GUANINE:
+		case GUANINE:
 			return "Guanine";
 			break;
-		case DNA_CYTOSINE:
+		case CYTOSINE:
 			return "Cytosine";
-			break;
-		default:
-			return "INVALID BASE";
 	}
 }
 
 char dna_base_to_char(DNA_Base b){
 	switch (b) {
-		case DNA_ADENINE:
+		case ADENINE:
 		      return 'A';
 		      break;
-		case DNA_THYMINE:
+		case THYMINE:
 		      return 'T';
 		      break;
-		case DNA_GUANINE:
+		case GUANINE:
 		      return 'G';
 		      break;
-		case DNA_CYTOSINE:
+		case CYTOSINE:
 		      return 'C';
-		      break;
-		default:
-		      return '_';
 	}
 }
 
-DNA_Base dna_get_base(DNA_Strand s, int i){
+DNA_Base dna_get_base(DNA s, int i){
 	return s.bases[i];
 }
 
-int dna_set_base(DNA_Strand* s, int i, DNA_Base b){
+int dna_set_base(DNA* s, int i, DNA_Base b){
 	s->bases[i] = b;
 	return 0;
 }
 
-char* dna_to_string(DNA_Strand s){
+char* dna_to_string(DNA s){
 	char* str = (char*) malloc(s.length);
 	int i;
 	for(i=0;i<s.length;i++){

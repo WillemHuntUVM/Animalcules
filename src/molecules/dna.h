@@ -7,17 +7,24 @@
 #define DNA_THYMINE 	3
 typedef unsigned int DNA_Base;
 
+typedef enum DNA_Base_Struct{
+	ADENINE,
+	GUANINE,
+	CYTOSINE,
+	THYMINE
+} DNA_Base;
+
 DNA_Base 	dna_base_get_partner(DNA_Base);
 char* 		dna_base_to_string(DNA_Base);
 char		dna_base_to_char(DNA_Base);
 
-typedef struct DNA {
+typedef struct DNA_Struct {
 	int  length;
 	int* bases;
-} DNA_Strand;
+} DNA;
 
-DNA_Base 	dna_get_base(DNA_Strand, int);
-int		dna_set_base(DNA_Strand*, int, DNA_Base);
-char*		dna_to_string(DNA_Strand);
+DNA_Base 	dna_get_base(DNA, int);
+int		dna_set_base(DNA*, int, DNA_Base);
+char*		dna_to_string(DNA);
 
 #endif
