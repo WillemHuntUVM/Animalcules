@@ -20,6 +20,5 @@ typedef struct register_struct {
 
 int 	register_fill(Register*, void*);
 void* 	register_empty(Register*);
-void*	register_peek(Register);
 
 #endif
