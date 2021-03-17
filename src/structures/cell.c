@@ -2,63 +2,25 @@
 #include "structures/cell.h"
 #include "structures/organelle.h"
 
-Cell* make_cell(DNA_Strand* strand){
+Cell* make_empty_cell(){
 	Cell* c = (Cell*) malloc(sizeof(Cell));
-	c.producer_organelles = NULL;
-	c.worker_organelles = NULL;
-	c.reader_organelles = NULL;
-	c.writer_organelles = NULL;
-	c.producer_count = 0;
-	c.reader_count = 0;
-	c.writer_count = 0;
-	c.worker_count = 0;
-	c.state = IDLE;
+	c->organelles = NULL;
+	c->organelle_count = 0;
+	c->state = DEAD;
 	return c;	
 }
 
+Cell* make_cell(Organelle** organelles){
+	Cell* c = make_empty_cell();
+	c->organelles = organelles;
+	return c;
+}
+
 int cell_add_organelle(Cell* cell, Organelle* new_organelle, OrganelleType type){
-	Organelle** destination;
-	int count;
-	switch (type){
-		case WORKER: 
-			destination 	= cell->worker_organelles;
-			count 		= cell->worker_count;
-			break;
-		case PRODUCER: 
-			destination 	= cell->producer_organelles;
-			count 	 	= cell->producer_count;
-			break;
-		case WRITER: 
-			destination 	= cell->writer_organelles;
-			count 		= cell->writer_count;
-			break;
-		case READER: 
-			destination 	= cell->reader_organelles;
-			count 		= cell->reader_count;
-			break;
-		default: 
-			return -1;
-	}
-
+	Organelle** destination = cell->organelles;
+	int count = cell->organelle_count;
 	destination[count] = new_organelle;
-	
-	switch(type){
-		case READER: 
-			cell->reader_count += 1;
-			break;
-		case WRITER:
-			cell->writer_count += 1;
-			break;
-		case PRODUCER:
-			cell->producer_count += 1;
-			break;
-		case WORKER:
-			cell->worker_count += 1;
-			break;
-		default:
-			return -1;
-	}
-
+	cell->organelle_count += 1;	
 	return 0;
 }
 
@@ -67,31 +29,45 @@ int cell_delete_organelle(Cell* cell, Organelle* organelle){
 	Organelle** new_list;
 	int new_list_count = 0;
 
-	for(i=0;i<cell->worker_count;i++){
-		if(cell->worker_organelles[i] != organelle){
-			new_list[new_list_count] = cell->worker_organelles[i];
-		}	
+	for(i=0;i<cell->organelle_count;i++){
+		if(cell->organelles[i] != organelle){
+			new_list[new_list_count] = cell->organelles[i];
+		}else{
+			free(cell->organelles[i]);
+		}
 	}
 
+	cell->organelles = new_list;
 	return 0;
 }
 
+int cell_delete_organelle_at(Cell* cell, int index){
+	int i;
+	Organelle** new_list;
+	int new_list_count = 0;
+	for(i=0;i<cell->organelle_count;i++){
+		if (i != index){
+			new_list[new_list_count] = cell->organelles[i];
+			new_list_count += 1;
+		}else{
+			free(cell->organelles[i];
+		}
+	}
+	cell->organelles = new_list;
+	return 0;
+}
+
+Organelle* cell_get_organelle_at(Cell* cell, int index){
+	return cell->organelles[index];
+}
+
 char* 	cell_state(Cell c){
-	switch (c.type) {
-		case WORKER: 
-			return "Worker";
+	switch (c.state) {
+		case DEAD: 
+			return "Dead";
 			break;
-		case PRODUCER: 
-			return "Producer";
-			break;
-		case WRITER: 
-			return "Writer";
-			break;
-		case READER: 
-			return "Reader";
-			break;
-		default: 
-			return "ERROR";
+		case ALIVE: 
+			return "Alive";
 	}
 }
 

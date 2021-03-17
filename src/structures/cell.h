@@ -4,25 +4,25 @@
 #include "molecules/dna.h"
 #include "structures/organelle.h"
 
-#define CELL_STATE_DEAD 	0
-#define CELL_STATE_ALIVE	1
+typedef enum cell_state_enum {
+	DEAD,
+	ALIVE
+} Cell_State;
 
 typedef struct cell_struct {
-	Organelle** producer_organelles;	// Material -> Material
-	Organelle** worker_organelles;		// Energy -> Action
-	Organelle** reader_organelles;		// Code -> Effects
-	Organelle** writer_organelles; 		// Code -> Code
-	int producer_count;
-	int worker_count;
-	int reader_count;
-	int writer_count;
-	int state;				// Alive: 0, Dead: 1
+	Organelle** 	organelles;
+	int 		organelle_count;
+	Cell_State	state;
 } Cell;
 
-Cell* 	make_cell(DNA_Strand*);
+Cell* 	make_empty_cell();
+Cell* 	make_cell(Organelle**);
 
-int 	cell_add_organelle(Organelle*, char*);
-int 	cell_delete_organelle(Organelle*);
+int 		cell_add_organelle(Cell*, Organelle*);
+int 		cell_delete_organelle(Cell*, Organelle*);
+int		cell_delete_organelle_at(Cell*, int);
+
+Organelle* 	cell_get_organelle(Cell*, int);
 
 char* 	cell_state(Cell);
 char* 	cell_print(Cell);
